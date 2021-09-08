@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-7!u+b^uo#_d%(x38m#ih*ugr*-)8dkx89ko(&(h8!_8tmft6fa
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tuits-django-pe.herokuapp.com']
 
 
 # Application definition

@@ -1,1 +1,1 @@
-web: gunicorn projectname.wsgi
+web: gunicorn red_social.wsgi --log-file -
