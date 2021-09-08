@@ -1,0 +1,67 @@
+{% extends 'app_social/layout.html' %}
+{% load humanize %}
+{% block content %}
+
+
+<!-- Profile -->
+<div class="profile">
+	
+	
+	<img src="{{user.profile.image.url}}">
+	<h2>@{{user.username}}</h2>
+
+	
+	{% if request.user.is_authenticated %}
+		
+		{% if user.username != request.user.username %}
+			
+			{% if user not in request.user.profile.following %}
+			<button><a class="follow-button" href="{% url 'follow' user %}">Follow</a></button>
+			{% else %}
+			<button><a class="follow-button" href="{% url 'unfollow' user %}">Unfollow</a></button>
+			{% endif %}
+				
+		{% endif %}
+			
+	{% endif %}
+		
+	
+</div>
+
+<!-- Follow items -->
+<div class="follow">
+	<div>
+		<h5>Post</h5>
+		<p>{{user.posts.count}}</p>
+	</div>
+	<div>
+		<h5>Followers</h5>
+		<p>{{ user.profile.followers.count }}</p>
+
+	</div>
+	<div>
+		<h5>Following</h5>
+		<p>{{ user.profile.following.count }}</p>
+	</div>
+</div>
+
+{% for post in posts %}
+
+
+<article>
+    <div class="container-article">
+        <img src="{{ post.user.profile.image.url}}">
+        <div>
+            <h2 class="username"><a href="{% url 'profile' post.user.username %}">{{post.user.username | title}}</a></h2>
+            <i class="clock"></i>
+            <time data-time="#">{{post.timestamp|naturaltime}}</time>
+            <div class="post">{{post.content}}</div>
+        </div>
+    </div>
+</article>
+{% endfor %}
+<!-- block super -->
+
+
+
+{% endblock %}
